@@ -1,0 +1,16 @@
+from transformers import pipeline, set_seed
+
+generator = pipeline('text-generation', model='distilgpt2')
+
+prompt = "The future of artificial intelligence in healthcare is"
+
+set_seed(42)
+
+generated_text = generator(
+    prompt,
+    max_new_tokens=100,
+    num_return_sequences=2
+)
+
+for text in generated_text:
+    print(text['generated_text'])
